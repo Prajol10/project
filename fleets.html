@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Fleet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #007bff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .search-container {
+            display: inline-block;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #004080;
+        }
+
+        /* Car fleet styles */
+        .main-content {
+            margin-top: 20px;
+        }
+
+        .fleet-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .fleet-card {
+            width: calc(33.33% - 20px);
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fleet-card:hover {
+            transform: scale(1.05);
+        }
+
+        .fleet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .fleet-card-info {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .fleet-additional-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .book-now-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .book-now-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <a href="home.html" class="logo">Car Rental</a>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search cars...">
+            <button class="search-button" onclick="searchCars()"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="container">
+        <div class="fleet-cards-container" id="fleet-cards-container">
+            <!-- Car cards will be dynamically added here -->
+        </div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetchCarData();
+    });
+
+    async function fetchCarData() {
+        try {
+            const response = await fetch('fetchCars.php');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const carsData = await response.json();
+            displayCars(carsData);
+        } catch (error) {
+            console.error('Error fetching car data:', error);
+        }
+    }
+
+    function displayCars(cars) {
+        const fleetContainer = document.getElementById('fleet-cards-container');
+        fleetContainer.innerHTML = ''; // Clear existing content
+        cars.forEach(car => {
+            const carCard = createCarCard(car);
+            fleetContainer.appendChild(carCard);
+        });
+    }
+
+    function createCarCard(car) {
+        const carCard = document.createElement('div');
+        carCard.classList.add('fleet-card');
+        carCard.innerHTML = `
+            <img src="images/${car.Image}" alt="${car.Model}">
+            <div class="fleet-card-info">
+                <h2>${car.Company} ${car.Model}</h2>
+                <div class="fleet-additional-info">
+                    <p>Year: ${car.Year}</p>
+                    <p>Price: ${car.Price}</p>
+                    <p>Fuel Type: ${car.FuelType}</p>
+                </div>
+                <!-- Update the "Book Now" button to include a link to the rental form page with the selected car model -->
+                <a class="book-now-btn" href="rental_form.php?model=${encodeURIComponent(car.Model)}">Book Now</a>
+            </div>
+        `;
+        return carCard;
+    }
+
+    function searchCars() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const fleetContainer = document.getElementById('fleet-cards-container');
+        const carCards = fleetContainer.getElementsByClassName('fleet-card');
+        Array.from(carCards).forEach(card => {
+            const cardText = card.innerText.toLowerCase();
+            if (cardText.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Motor Chadam</title>
+    <link rel = "icon" type = "image/x-icon" href = "/images/android-chrome-192x192.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <header>
+        <a href="home.html" class="logo"><img src="images/logo.png" alt="jeep image"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="fleets.html">Browse Our Vehicles</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            
+        </ul>
+        <div class="header-btn">
+            <a href = "reservation.html" class = "Check-status-btn">Check Reservation Status</a>
+            
+        </div>
+    </header>
+    
+    <!-- Home -->
+    <section class="home" id="home">
+        <div class="text">
+            <h1><span>Looking</span> to <br>rent a car</h1> 
+            <p>This site brings you the best car in rent with a reasonable price.</p>
+        </div>
+        <div class="form-container">
+            <form action="signup.html">
+                <div class="input-box">
+                    <span>Location</span>
+                    
+
+                    <input type="search" name="" id="" placeholder="Search Places">
+                </div>
+                <div class="input-box">
+                    <span>Pick-Up Date</span>
+                    <input type="date" name="" id="">
+                </div>
+                <div class="input-box">
+                    <span>Return Date</span>
+                    <input type="date" name="" id="">
+                </div>
+                <input type="submit" name="" id="" class="btn">
+            </form>
+        </div>
+    </section>
+
+    <!-- Ride -->
+    <section class="ride" id="ride">
+        <div class="heading">
+            <span>How It Work</span>
+            <h1>Rent with 3 Easy Steps</h1>
+        </div>
+        <div class="ride-container">
+            <div class="box">
+                <i class='bx bxs-map' ></i>
+                <h2>Choose a Location</h2>
+                <p>Here, all you have to do is choose a location where you want to explore.</p>
+            </div>
+            <div class="box">
+                <i class='bx bx-calendar-check' ></i>
+                <h2>Pick-Up Date</h2>
+                <p>Select the date when you want to rent the car along with the date/time period you are expected to return it.</p>
+            </div>
+            <div class="box">
+                <i class='bx bxs-book'></i>
+                <h2>Book A Car</h2>
+                <p>Select the car model which you want to rent for and book it.</p>
+            </div>
+        </div>
+    </section>
+    <section class="recommended" id="recommended">
+        <div class="heading">
+            <span>Recommended for You</span>
+            <h1>Explore Our Top Picks</h1>
+        </div>
+        <div class="recommended-container">
+            <div class="car-card">
+                <img src="images/creta.jpg" alt="Car 1">
+                <h3>Creta</h3>
+                <p>Year: 2022</p>
+                <p>Price: Rs. 75,000/month</p>
+                <a href="rental_form.html" class="btn">Book Now!</a>
+            </div>
+            <div class="car-card">
+                <img src="images/kia_niro.png" alt="Car 2">
+                <h3>Kia niro</h3>
+                <p>Year: 2021</p>
+                <p>Price: Rs. 80,000/month</p>
+                <a href="rental_form.html" class="btn">Book Now!</a>
+            </div>
+            <div class="car-card">
+                <img src="images/seltos.jpg" alt="Car 3">
+                <h3>Seltos</h3>
+                <p>Year: 2020</p>
+                <p>Price: Rs. 70,000/month</p>
+                <a href="rental_form.html" class="btn">Book Now!</a>
+            </div>
+            <div class="car-card">
+                <img src="images/seltos.jpg" alt="Car 3">
+                <h3>Seltos</h3>
+                <p>Year: 2020</p>
+                <p>Price: Rs. 70,000/month</p>
+                <a href="rental_form.html" class="btn">Book Now!</a>
+            </div>
+           
+        </div>
+    </section>
+    <!-- About -->
+    <section class="about" id="about">
+        <!-- Your existing about section code -->
+    </section>
+    <footer>
+        <div class="footer-content">
+          <div class="payment-methods">
+            <p>We accept VISA, MASTERCARD</p>
+          </div>
+          <div class="admin-login">
+            <button id="admin-login-btn">Admin Login</button>
+          </div>
+          <div class="contact-details">
+            <p>Contact Us:</p>
+            <p>Phone: 98000000</p>
+            <p>Email: business.modorchadam@gmail.com</p>
+          </div>
+          <div class="social-media">
+            <p>Follow Us:</p>
+            <p>[Social Media Icons/Handles]</p>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>© 2024 Your Car Rental Company. All rights reserved.</p>
+        </div>
+      </footer>
+      
+
+    
+
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Link To JS -->
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('admin-login-btn').addEventListener('click', function() {
+    window.location.href = 'admin.html';
+  });
+});
+
+    </script>
+</body>
+</html>
